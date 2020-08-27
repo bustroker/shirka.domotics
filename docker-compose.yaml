@@ -1,0 +1,48 @@
+version: "3.7"
+services:
+  nginx-service:
+    build: ./nginx
+    ports:
+      - '8080:8080'
+    depends_on:
+      - grafana-service
+      - nodered-service
+  nodered-service:
+    build: ./nodered
+    environment:
+      - TZ=Europe/Madrid
+    ports:
+      - "1880:1880"
+    volumes:
+      - type: bind
+        source: ./nodered/data # location in host to keep persistent data. 
+        target: /data # where nodered saves data to
+  mosquitto-service:
+    build: ./mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+  influxdb-service:
+    build: ./influxdb
+    ports:
+      - '8086:8086'
+    volumes:
+      - type: bind
+        source: ./influxdb/data
+        target: /var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=db0
+  grafana-service:
+    build: ./grafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - type: bind
+        source: ./grafana/data
+        target: /var/lib/grafana
+    depends_on:
+      - influxdb-service
+    # environment:
+    #   - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+    #   - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+

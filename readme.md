@@ -1,0 +1,57 @@
+## General idea
+We want to deploy the domotics system described in `rpi3_iot_server.pdf`, with s single `docker-compose up` command.
+
+Will create a docker image using the base official image, and injecting configuration.
+
+## Run Vagrant VM and ssh inside
+```
+cd shirka.domotics
+vagrant up
+vagrant ssh
+cd ../../vagrant
+ls
+```
+`ls` should display all the content in shirka.domotics. This we call **root-folder**.
+
+**ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM, UNLESS SPECIFIED OTHERWISE**
+
+## Full system with docker-compose
+run
+```
+cd <root-folder>
+docker-compose up --build
+```
+
+Nodered is in `localhost:1880`. Open a browser **in the host machine** in localhost:1880 to access nodered. The port 1880 from vagrant VM is mapped to port 1880 in host machine.
+
+Mosquitto is listening in localhost:1883 (See mosquitto/readme.md for details.)
+
+InfluxDb is listening http on localhost:8086. It exposes its own /health endpoint (See influxdb/readme.md for details.)
+
+### Run Integration tests
+The project Shirka.Domotics.Test tests all the /health endpoints exposed by nodered and reports results.
+Can be run both in vagrant VM and in host machine, if host has dotnet installed as well.
+```
+cd <root-folder>/Shirka.Domotics.Tests
+dotnet test
+```
+
+### Test each health endpoint separately.
+There are flows implemented to test health of different parts of the system
+- nodered
+nodered http endpoint `/health/nodered` just responds 200. This is to be used to test whether nodered is up.
+```
+curl localhost:1880/health/nodered
+```
+
+- mosquitto
+nodered http endpoint `health/mosquitto` respondes 200 or 500 depending on nodered being able to publish and receive a message to a mosquitto topic, or not.
+```
+curl localhost:1880/health/mosquitto
+```
+
+- InfluxDB
+InfluxDB exposes a `/health` endpoint for this purpose.
+```
+curl localhost:1880/health/influxdb
+```

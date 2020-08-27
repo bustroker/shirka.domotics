@@ -1,0 +1,11 @@
+.vagrant
+influxdb/data/data
+influxdb/data/meta
+influxdb/data/wal
+grafana/data/plugins
+grafana/data/png
+grafana/data/grafana.db
+*.log
+**/log
+**/bin
+**/obj

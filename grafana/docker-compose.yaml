@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3000:3000'
+    volumes:
+      - type: bind
+        source: ./data
+        target: /var/lib/grafana
+      - type: bind
+        source: ./provisioning
+        target: /etc/grafana/provisioning
+      - type: bind
+        source: ./conf
+        target: /etc/grafana/conf
+    environment: 
+      - GF_PATHS_CONFIG=/etc/grafana/conf/grafana.ini
+    depends_on:
+      - influxdb
+    # environment:
+    #   - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+    #   - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
