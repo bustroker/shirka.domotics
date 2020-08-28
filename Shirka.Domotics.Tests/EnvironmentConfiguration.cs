@@ -20,9 +20,9 @@ namespace Shirka.Domotics.Tests
 
         public string GrafanaBaseUrlThroughReverseProxy => $"{_reverseProxyBaseUrl}:{reverseProxyGrafanaPort}";
 
-        public static EnvironmentConfiguration VagrantVM => new EnvironmentConfiguration(reverseProxyBaseUrl = "http://localhost");
+        public static EnvironmentConfiguration VagrantVM => new EnvironmentConfiguration(reverseProxyBaseUrl: "http://localhost");
 
-        public static EnvironmentConfiguration RaspberryPi => new EnvironmentConfiguration(reverseProxyBaseUrl = "http://192.168.1.102");
+        public static EnvironmentConfiguration RaspberryPi => new EnvironmentConfiguration(reverseProxyBaseUrl: "http://192.168.1.102");
 
     }
 }

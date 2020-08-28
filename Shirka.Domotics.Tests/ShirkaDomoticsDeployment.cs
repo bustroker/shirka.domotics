@@ -14,8 +14,12 @@ namespace Shirka.Domotics.Tests
             var environmentName = Environment.GetEnvironmentVariable("ENVIRONMENT_NAME");
             switch (environmentName)
             {
-                case "DEV": _environmentConfig = EnvironmentConfiguration.VagrantVM;
-                case "PRE": _environmentConfig = EnvironmentConfiguration.RaspberryPi;
+                case "DEV": 
+                    _environmentConfig = EnvironmentConfiguration.VagrantVM;
+                    break;
+                case "PRE": 
+                    _environmentConfig = EnvironmentConfiguration.RaspberryPi;
+                    break;
                 default: throw new ArgumentException($"Unknown environment ENVIRONMENT_NAME={environmentName}. Needs to be either 'DEV' or 'PRE'.");
             }
         }
@@ -25,7 +29,7 @@ namespace Shirka.Domotics.Tests
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
+                client.BaseAddress = new Uri(_environmentConfig.NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/nodered");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
@@ -36,7 +40,7 @@ namespace Shirka.Domotics.Tests
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
+                client.BaseAddress = new Uri(_environmentConfig.NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/mosquitto");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
@@ -47,7 +51,7 @@ namespace Shirka.Domotics.Tests
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
+                client.BaseAddress = new Uri(_environmentConfig.NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/influxdb");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
@@ -58,7 +62,7 @@ namespace Shirka.Domotics.Tests
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(GrafanaBaseUrlThroughReverseProxy);
+                client.BaseAddress = new Uri(_environmentConfig.GrafanaBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/api/health");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }

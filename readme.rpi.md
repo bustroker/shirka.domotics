@@ -44,7 +44,7 @@ sudo echo ENVIRONMENT_NAME=PRE >> /etc/environment
 ```console 
 cd shirka.domotics/Shirka.Domotics.Tests
 docker build -t tests .
-docker run --network host tests
+docker run --network host -e ENVIRONMENT_NAME=DEV tests
 ```
 
 ### Access nodered and grafana
