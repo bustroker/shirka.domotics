@@ -28,13 +28,12 @@ docker-compose up --build -d
 ```
 
 ### run tests
-
 ```console 
 cd shirka.domotics/Shirka.Domotics.Tests
-docker build -t shirka.domotics.tests .
-docker run --network host shirka.domotics.tests
+docker build -t tests .
+docker run --network host tests
 ```
 
 ### access nodered and grafana
-- Open browser `[rpi-IP]:1880`
-- Open browser `[rpi-IP]:3000`
+- Open browser in host machine on `http://[RPi-IP]:8080`.
+- Open browser in host machine on `http://[RPi-IP]:9090`
