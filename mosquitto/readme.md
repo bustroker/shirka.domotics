@@ -14,12 +14,12 @@ apt-get install mosquitto-clients
 
 subscribe the console to some topic 
 ```
-mosquitto_sub -h localhost -t "queue/messages"
+mosquitto_sub -h localhost -p 1883 -t "queue/messages"
 ```
 
 - publish a message to same topic
 ```
-mosquitto_pub -h localhost -t "queue/messages" -m "Hello world"
+mosquitto_pub -h localhost -p 1883 -t "queue/messages" -m "Hello world"
 ```
 
 ### Data
