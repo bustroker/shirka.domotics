@@ -2,6 +2,7 @@
 We want to deploy the domotics system described in `rpi3_iot_server.pdf` with docker-compose.
 
 ## Run in vagrant VM
+Vagrant VM is `dev` environment.
 **To run in RPi see readme.rpi.md**
 
 ### Download repo, run Vagrant VM and ssh inside VM

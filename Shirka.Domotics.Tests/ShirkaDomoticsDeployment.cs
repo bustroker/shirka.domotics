@@ -8,12 +8,17 @@ namespace Shirka.Domotics.Tests
 {
     public class ShirkaDomoticsDeployment
     {
-        private const string ReverseProxyBaseUrl = "http://192.168.1.102"; //"http://localhost"; // either raspberry IP or localhost when in VM
-        private const string ReverseProxyNoderedPort = "8080";
-        private const string ReverseProxyGrafanaPort = "9090";
-
-        private static string NoderedBaseUrlThroughReverseProxy =>  $"{ReverseProxyBaseUrl}:{ReverseProxyNoderedPort}";
-        private static string GrafanaBaseUrlThroughReverseProxy => $"{ReverseProxyBaseUrl}:{ReverseProxyGrafanaPort}";
+        private readonly EnvironmentConfiguration _environmentConfig;
+        public ShirkaDomoticsDeployment()
+        {
+            var environmentName = Environment.GetEnvironmentVariable("ENVIRONMENT_NAME");
+            switch (environmentName)
+            {
+                case "DEV": _environmentConfig = EnvironmentConfiguration.VagrantVM;
+                case "PRE": _environmentConfig = EnvironmentConfiguration.RaspberryPi;
+                default: throw new ArgumentException($"Unknown environment ENVIRONMENT_NAME={environmentName}. Needs to be either 'DEV' or 'PRE'.");
+            }
+        }
 
         [Fact]
         public async Task NodeRedIsUpThroughNginxReverseProxy()
