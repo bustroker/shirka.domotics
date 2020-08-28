@@ -35,12 +35,10 @@ The raspberry IP needs to be passed in `REVERSE_PROXY_BASE_URL`
 ```console 
 cd shirka.domotics/Shirka.Domotics.Tests
 docker build -t tests .
-docker run --network host -e ENVIRONMENT_NAME=DEV tests
 docker run --network host \
             -e REVERSE_PROXY_BASE_URL=http://192.168.1.102 \
             -e REVERSE_PROXY_NODE_PORT=8080 \
             -e REVERSE_PROXY_GRAFANA_PORT=9090 tests
-
 ```
 
 ### Access nodered and grafana
