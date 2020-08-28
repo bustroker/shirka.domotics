@@ -3,8 +3,10 @@ We want to deploy the domotics system described in `rpi3_iot_server.pdf` with do
 
 ## Run in vagrant VM
 **To run in RPi see readme.rpi.md**
-### Run Vagrant VM and ssh inside
+
+### Download repo, run Vagrant VM and ssh inside VM
 ```
+git clone https://github.com/bustroker/shirka.domotics.git
 cd shirka.domotics
 vagrant up
 vagrant ssh
@@ -15,22 +17,22 @@ ls
 
 **ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
 
-### Full run with docker-compose
-Run
+### Run
+Build and run all the components with docker-compose
 ```
 cd <root-folder>
 docker-compose up --build
 ```
 
-Nodered is in `localhost:1880`. Open a browser **in the host machine** in localhost:1880 to access nodered. The port 1880 from vagrant VM is mapped to port 1880 in host machine.
+Nodered is in `localhost:1880`. Open a browser in the host machine (outside VM) in `localhost:1880` to access nodered (the port 1880 from vagrant VM is mapped to port 1880 in host machine.).
 
-Mosquitto is listening in localhost:1883 (See mosquitto/readme.md for details.)
+Mosquitto is listening in localhost:1883, **both** in the host machine and in the VM (See mosquitto/readme.md for details.)
 
-InfluxDb is listening http on localhost:8086. It exposes its own /health endpoint (See influxdb/readme.md for details.)
+InfluxDb is listening http on localhost:8086,  **both** in the host machine and in the VM. It exposes its own /health endpoint (See influxdb/readme.md for details.)
 
 ### Run Integration tests
 The project Shirka.Domotics.Test tests all the /health endpoints exposed by nodered and reports results.
-Can be run both in vagrant VM and in host machine, if host has dotnet installed as well.
+Can be run in the host machine as well if dotnet is installed. Otherwise, into VM.
 ```
 cd <root-folder>/Shirka.Domotics.Tests
 dotnet test
