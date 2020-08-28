@@ -8,14 +8,19 @@ namespace Shirka.Domotics.Tests
 {
     public class ShirkaDomoticsDeployment
     {
-        private const string NodeRedBaseUrl = "http://localhost:1880";
+        private const string ReverseProxyBaseUrl = "http://192.168.1.102"; //"http://localhost"; // either raspberry IP or localhost when in VM
+        private const string ReverseProxyNoderedPort = "8080";
+        private const string ReverseProxyGrafanaPort = "9090";
+
+        private static string NoderedBaseUrlThroughReverseProxy =>  $"{ReverseProxyBaseUrl}:{ReverseProxyNoderedPort}";
+        private static string GrafanaBaseUrlThroughReverseProxy => $"{ReverseProxyBaseUrl}:{ReverseProxyGrafanaPort}";
 
         [Fact]
-        public async Task NodeRedIsUp()
+        public async Task NodeRedIsUpThroughNginxReverseProxy()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NodeRedBaseUrl);
+                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/nodered");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
@@ -26,30 +31,30 @@ namespace Shirka.Domotics.Tests
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NodeRedBaseUrl);
+                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/mosquitto");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
         }
-        
+
         [Fact]
         public async Task InfluxDbIsUpAndNoderedCanConnectWithIt()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NodeRedBaseUrl);
+                client.BaseAddress = new Uri(NoderedBaseUrlThroughReverseProxy);
                 var response = await client.GetAsync("/health/influxdb");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
         }
-        
+
         [Fact]
-        public async Task GrafanaIsUpAndNoderedCanConnectWithIt()
+        public async Task GrafanaIsUpThroughNginxReverseProxy()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(NodeRedBaseUrl);
-                var response = await client.GetAsync("/health/grafana");
+                client.BaseAddress = new Uri(GrafanaBaseUrlThroughReverseProxy);
+                var response = await client.GetAsync("/api/health");
                 response.IsSuccessStatusCode.Should().BeTrue();
             }
         }
