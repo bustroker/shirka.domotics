@@ -11,12 +11,12 @@ vagrant ssh
 cd ../../vagrant
 ls
 ```
-`ls` should display all the content in shirka.domotics. This we call **root-folder**.
+`ls` should display all the content in shirka.domotics. This will be **root-folder**.
 
-**ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM, UNLESS SPECIFIED OTHERWISE**
+**ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
 
 ### Full run with docker-compose
-run
+Run
 ```
 cd <root-folder>
 docker-compose up --build

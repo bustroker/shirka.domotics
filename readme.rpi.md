@@ -28,8 +28,8 @@ docker-compose up --build -d
 ```
 
 ### run tests
-
+ToDo (pending to install dotnet in rpi)
 
 ### access nodered and grafana
-Open browser `[rpi-IP]:1880`
-Open broser `[rpi-IP]:3000`
+- Open browser `[rpi-IP]:1880`
+- Open browser `[rpi-IP]:3000`
