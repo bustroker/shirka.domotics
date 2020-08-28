@@ -30,21 +30,17 @@ cd shirka.domotics
 docker-compose up --build -d
 ```
 
-### Smoke tests
-To run tests, the ENVIRONMENT_NAME variable needs to be set.
-#### Set environment variable
-Environment name is **only required for running automatic tests** (for the moment). Supported values are 'ENVIRONMENT_NAME=DEV' and 'ENVIRONMENT_NAME=PRE'. See `EnvironmentConfiguration` class in Shirka.Domotics.Tests.
-To set the environment variable, add `ENVIRONMENT_NAME=PRE` to file /etc/environment
-```console
-sudo echo ENVIRONMENT_NAME=PRE >> /etc/environment
-```
-**Logout from RPi and login again for the new environment variable to be loaded**
-
-#### Run tests
+### Run tests
+The raspberry IP needs to be passed in `REVERSE_PROXY_BASE_URL`
 ```console 
 cd shirka.domotics/Shirka.Domotics.Tests
 docker build -t tests .
 docker run --network host -e ENVIRONMENT_NAME=DEV tests
+docker run --network host \
+            -e REVERSE_PROXY_BASE_URL=http://192.168.1.102 \
+            -e REVERSE_PROXY_NODE_PORT=8080 \
+            -e REVERSE_PROXY_GRAFANA_PORT=9090 tests
+
 ```
 
 ### Access nodered and grafana

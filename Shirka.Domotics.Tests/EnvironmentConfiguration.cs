@@ -8,21 +8,20 @@ namespace Shirka.Domotics.Tests
 {
     public class EnvironmentConfiguration
     {
-        private const string reverseProxyNoderedPort = "8080";
-        private const string reverseProxyGrafanaPort = "9090";
         private readonly string _reverseProxyBaseUrl;
-        private EnvironmentConfiguration(string reverseProxyBaseUrl)
+        private readonly string _reverseProxyNoderedPort;
+        private readonly string _reverseProxyGrafanaPort;
+
+        public EnvironmentConfiguration()
         {
-            _reverseProxyBaseUrl = reverseProxyBaseUrl;
+            _reverseProxyBaseUrl = Environment.GetEnvironmentVariable("REVERSE_PROXY_BASE_URL");
+            _reverseProxyNoderedPort = Environment.GetEnvironmentVariable("REVERSE_PROXY_NODE_PORT");
+            _reverseProxyGrafanaPort = Environment.GetEnvironmentVariable("REVERSE_PROXY_GRAFANA_PORT");
         }
 
-        public string NoderedBaseUrlThroughReverseProxy => $"{_reverseProxyBaseUrl}:{reverseProxyNoderedPort}";
+        public string NoderedBaseUrlThroughReverseProxy => $"{_reverseProxyBaseUrl}:{_reverseProxyNoderedPort}";
 
-        public string GrafanaBaseUrlThroughReverseProxy => $"{_reverseProxyBaseUrl}:{reverseProxyGrafanaPort}";
-
-        public static EnvironmentConfiguration VagrantVM => new EnvironmentConfiguration(reverseProxyBaseUrl: "http://localhost");
-
-        public static EnvironmentConfiguration RaspberryPi => new EnvironmentConfiguration(reverseProxyBaseUrl: "http://192.168.1.102");
+        public string GrafanaBaseUrlThroughReverseProxy => $"{_reverseProxyBaseUrl}:{_reverseProxyGrafanaPort}";
 
     }
 }

@@ -36,8 +36,11 @@ The project Shirka.Domotics.Test tests all the /health endpoints exposed by node
 The tests are run in a docker container either in the VM or in the RPi. Needs to be run in host's network to be able to access services' endpoints.
 ```console 
 cd <root-folder>/Shirka.Domotics.Tests
-docker build -t shirka.domotics.tests .
-docker run --network host shirka.domotics.tests
+docker build -t tests .
+docker run --network host \
+            -e REVERSE_PROXY_BASE_URL=http://localhost \
+            -e REVERSE_PROXY_NODE_PORT=8080 \
+            -e REVERSE_PROXY_GRAFANA_PORT=9090 tests
 ```
 
 ### Test each health endpoint separately.

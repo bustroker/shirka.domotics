@@ -11,17 +11,7 @@ namespace Shirka.Domotics.Tests
         private readonly EnvironmentConfiguration _environmentConfig;
         public ShirkaDomoticsDeployment()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ENVIRONMENT_NAME");
-            switch (environmentName)
-            {
-                case "DEV": 
-                    _environmentConfig = EnvironmentConfiguration.VagrantVM;
-                    break;
-                case "PRE": 
-                    _environmentConfig = EnvironmentConfiguration.RaspberryPi;
-                    break;
-                default: throw new ArgumentException($"Unknown environment ENVIRONMENT_NAME={environmentName}. Needs to be either 'DEV' or 'PRE'.");
-            }
+            _environmentConfig = new EnvironmentConfiguration();
         }
 
         [Fact]

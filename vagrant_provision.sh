@@ -2,9 +2,6 @@ echo "provisioning VM..."
 sudo apt update
 sudo apt-get update
 
-# set environment variable
-echo ENVIRONMENT_NAME=DEV >> /etc/environment
-
 # install docker and run
 sudo apt -y install docker.io
 sudo systemctl start docker
