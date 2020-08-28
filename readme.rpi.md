@@ -10,10 +10,11 @@ sudo apt-get remove python-configparser
 sudo pip3 -v install docker-compose
 ```
 
-## run shirka.domotics
+## run shirka.domotics in RPi
 ### Download shirka.domotics from github
-Create `shirka` folder, download `shirka.domotics` and provide permissions
+First ssh inside rpi and `cd` into /home, create `shirka` folder, download `shirka.domotics` and provide permissions
 ```
+cd /home
 mkdir shirka
 cd shirka
 sudo git clone https://github.com/bustroker/shirka.domotics.git

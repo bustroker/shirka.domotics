@@ -1,9 +1,9 @@
 ## General idea
-We want to deploy the domotics system described in `rpi3_iot_server.pdf`, with s single `docker-compose up` command.
+We want to deploy the domotics system described in `rpi3_iot_server.pdf` with docker-compose.
 
-Will create a docker image using the base official image, and injecting configuration.
-
-## Run Vagrant VM and ssh inside
+## Run in vagrant VM
+**To run in RPi see readme.rpi.md**
+### Run Vagrant VM and ssh inside
 ```
 cd shirka.domotics
 vagrant up
@@ -15,7 +15,7 @@ ls
 
 **ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM, UNLESS SPECIFIED OTHERWISE**
 
-## Full system with docker-compose
+### Full run with docker-compose
 run
 ```
 cd <root-folder>
@@ -37,7 +37,7 @@ dotnet test
 ```
 
 ### Test each health endpoint separately.
-There are flows implemented to test health of different parts of the system
+There are flows implemented and deployed, to test health of different parts of the system
 - nodered
 nodered http endpoint `/health/nodered` just responds 200. This is to be used to test whether nodered is up.
 ```
