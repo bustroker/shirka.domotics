@@ -9,3 +9,4 @@ grafana/data/grafana.db
 **/log
 **/bin
 **/obj
+**/publish

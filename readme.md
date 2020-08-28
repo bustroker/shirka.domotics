@@ -30,12 +30,13 @@ Mosquitto is listening in localhost:1883, **both** in the host machine and in th
 
 InfluxDb is listening http on localhost:8086,  **both** in the host machine and in the VM. It exposes its own /health endpoint (See influxdb/readme.md for details.)
 
-### Run Integration tests
+### Run tests
 The project Shirka.Domotics.Test tests all the /health endpoints exposed by nodered and reports results.
-Can be run in the host machine as well if dotnet is installed. Otherwise, into VM.
-```
+The tests are run in a docker container either in the VM or in the RPi. Needs to be run in host's network to be able to access services' endpoints.
+```console 
 cd <root-folder>/Shirka.Domotics.Tests
-dotnet test
+docker build -t shirka.domotics.tests .
+docker run --network host shirka.domotics.tests
 ```
 
 ### Test each health endpoint separately.
