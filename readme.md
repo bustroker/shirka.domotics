@@ -40,7 +40,9 @@ docker build -t tests .
 docker run --network host \
             -e REVERSE_PROXY_BASE_URL=http://localhost \
             -e REVERSE_PROXY_NODE_PORT=8080 \
-            -e REVERSE_PROXY_GRAFANA_PORT=9090 tests
+            -e REVERSE_PROXY_GRAFANA_PORT=9090 \
+            -e DIRECT_NODERED_PORT=1880 \
+            -e DIRECT_GRAFANA_PORT=3000 tests
 ```
 
 ### Test each health endpoint separately.
