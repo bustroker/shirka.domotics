@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx-service:
-    build: ./nginx # where Dockerfile to build is
+    build: ./nginx 
     ports:
       - '8080:8080' 
       - '9090:9090' 
@@ -16,7 +16,7 @@ services:
       - "1880:1880"
     volumes:
       - type: bind
-        source: ./data/nodered # location in host to keep persistent data. 
+        source: ./data/nodered # physical location in host to keep persistent data. 
         target: /data # where nodered saves data to
   mosquitto-service:
     build: ./mosquitto
@@ -25,8 +25,6 @@ services:
       - "9001:9001"
   influxdb-service:
     build: ./influxdb
-    # ports:
-    #   - '8086:8086'
     volumes:
       - type: bind
         source: ./data/influxdb
@@ -39,7 +37,7 @@ services:
       - '3000:3000'
     volumes:
       - type: bind
-        source: ./duata/grafana
+        source: ./data/grafana
         target: /var/lib/grafana
     depends_on:
       - influxdb-service
