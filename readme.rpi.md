@@ -18,10 +18,24 @@ sudo pip3 -v install docker-compose
 First ssh inside rpi and `cd` into /home, create `shirka` folder, download `shirka.domotics` and provide permissions
 ```console
 cd /home
-mkdir shirka
+sudo mkdir shirka
 cd shirka
 sudo git clone https://github.com/bustroker/shirka.domotics.git
-sudo chmod -R 777 shirka.domotics
+```
+
+### Create `data` folders
+Create `data` folder with folders for each component to keep their persistent data and add initial setup data. This includes:
+- for nodered: default health flows.
+First make the file executable and then run.
+```console
+cd shirka.domotics
+sudo chmod +x initialize_data_folders.sh
+sudo ./initialize_data_folders.sh
+```
+
+### Give permisions over all the folders and files
+```
+sudo chmod -R 777 shirka/shirka.domotics
 ```
 
 ### Run shirka.domotics
@@ -33,14 +47,15 @@ docker-compose up --build -d
 ### Run tests
 The raspberry IP needs to be passed in `REVERSE_PROXY_BASE_URL`
 ```console 
-cd Shirka.Domotics.Tests && \
+cd Shirka.Domotics.Tests 
+
 docker build -t tests . && \
 docker run --network host \
             -e REVERSE_PROXY_BASE_URL=http://192.168.1.102 \
             -e REVERSE_PROXY_NODE_PORT=8080 \
             -e REVERSE_PROXY_GRAFANA_PORT=9090 \
             -e DIRECT_NODERED_PORT=1880 \
-            -e DIRECT_GRAFANA_PORT=3000 teststests
+            -e DIRECT_GRAFANA_PORT=3000 tests
 ```
 
 ### Access nodered and grafana

@@ -7,7 +7,7 @@ To run in Raspberry PI see readme.rpi.md
 
 ### Download repo, run Vagrant VM and ssh inside VM
 ```
-git clone https://github.com/bustroker/shirka.domotics.git
+sudo git clone https://github.com/bustroker/shirka.domotics.git
 cd shirka.domotics
 vagrant up
 vagrant ssh
