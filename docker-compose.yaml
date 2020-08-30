@@ -16,7 +16,7 @@ services:
       - "1880:1880"
     volumes:
       - type: bind
-        source: ./nodered/data # location in host to keep persistent data. 
+        source: ./data/nodered # location in host to keep persistent data. 
         target: /data # where nodered saves data to
   mosquitto-service:
     build: ./mosquitto
@@ -29,7 +29,7 @@ services:
     #   - '8086:8086'
     volumes:
       - type: bind
-        source: ./influxdb/data
+        source: ./data/influxdb
         target: /var/lib/influxdb
     environment:
       - INFLUXDB_DB=db0
@@ -39,7 +39,7 @@ services:
       - '3000:3000'
     volumes:
       - type: bind
-        source: ./grafana/data
+        source: ./duata/grafana
         target: /var/lib/grafana
     depends_on:
       - influxdb-service

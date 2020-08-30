@@ -33,8 +33,8 @@ docker-compose up --build -d
 ### Run tests
 The raspberry IP needs to be passed in `REVERSE_PROXY_BASE_URL`
 ```console 
-cd shirka.domotics/Shirka.Domotics.Tests
-docker build -t tests .
+cd Shirka.Domotics.Tests && \
+docker build -t tests . && \
 docker run --network host \
             -e REVERSE_PROXY_BASE_URL=http://192.168.1.102 \
             -e REVERSE_PROXY_NODE_PORT=8080 \

@@ -1,4 +1,5 @@
 .vagrant
+data
 influxdb/data/data
 influxdb/data/meta
 influxdb/data/wal

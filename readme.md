@@ -18,6 +18,11 @@ ls
 
 **ALL PORTS AND ENDPOINTS ARE REFERING TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
 
+### Create `data` folders
+Initialize `data` folder with data from repo.
+
+******** IMPLEMENTING THIS ************
+
 ### Run
 Build and run all the components with docker-compose
 ```
@@ -35,8 +40,8 @@ InfluxDb is listening http on localhost:8086,  **both** in the host machine and 
 The project Shirka.Domotics.Test tests all the /health endpoints exposed by nodered and reports results.
 The tests are run in a docker container either in the VM or in the RPi. Needs to be run in host's network to be able to access services' endpoints.
 ```console 
-cd <root-folder>/Shirka.Domotics.Tests
-docker build -t tests .
+cd Shirka.Domotics.Tests && \
+docker build -t tests .  && \
 docker run --network host \
             -e REVERSE_PROXY_BASE_URL=http://localhost \
             -e REVERSE_PROXY_NODE_PORT=8080 \

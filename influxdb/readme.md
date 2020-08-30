@@ -1,15 +1,11 @@
 
 ## InfluxDb
 https://hub.docker.com/_/influxdb/?tab=description
-run
-```
-cd influxdb
-docker-compose up 
-```
 
-test InfluxDb
-```
-curl localhost:8086/health
+Listen on port 8086.
+To test
+```console
+'localhost:8086/health'
 ```
 
 create db
