@@ -6,4 +6,4 @@ mkdir grafana
 mkdir influxdb 
 mkdir nodered
 cd ..
-cp nodered/data/* data/nodered
+cp nodered/initial_data/* data/nodered
