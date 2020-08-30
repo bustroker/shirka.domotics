@@ -3,6 +3,8 @@ We want to deploy the domotics system described in http://tinkerman.cat/rpi3_iot
 We want to have an automated development environment and an automated deployment process to production
 
 ## Quick up and running in vagrant Virtual Machine 
+To run in Raspberry PI see readme.rpi.md
+
 ### Download repo, run Vagrant VM and ssh inside VM
 ```
 git clone https://github.com/bustroker/shirka.domotics.git
