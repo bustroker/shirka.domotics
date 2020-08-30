@@ -19,8 +19,9 @@ ls
 **ALL THE FOLLOWING PORTS AND ENDPOINTS REFER TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
 
 ### Create `data` folders
-Initialize `data` folder with data from repo.
-First make file executable and then run.
+Create `data` folder with folders for each component to keep their persistent data and add initial setup data. This includes:
+- for nodered: default health flows.
+First make the file executable and then run.
 ```console
 chmod +x initialize_data_folders.sh
 ./initialize_data_folders.sh
