@@ -1,7 +1,6 @@
 .vagrant
 data
 *.log
-**/log
-**/bin
-**/obj
-**/publish
+Shirka.Domotics.Tests/bin
+Shirka.Domotics.Tests/obj
+Shirka.Domotics.Tests/publish
