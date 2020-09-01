@@ -1,9 +1,10 @@
 ## Setup environment 
 ssh inside the RPi.
 
-### Install docker and docker-compose in RPi
+### Install git docker and docker-compose in RPi
 ```console
-curl -sSL https://get.docker.com | sh
+sudo apt install git
+sudo curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker pi
 
 sudo apt-get install -y libffi-dev libssl-dev
@@ -35,13 +36,13 @@ sudo ./initialize_data_folders.sh
 
 ### Give permisions over all the folders and files
 ```
-sudo chmod -R 777 shirka/shirka.domotics
+sudo chmod -R 777 /home/shirka/shirka.domotics
 ```
 
 ### Run shirka.domotics
 ```console
 cd shirka.domotics
-docker-compose up --build -d
+sudo docker-compose up --build -d
 ```
 
 ### Run tests
