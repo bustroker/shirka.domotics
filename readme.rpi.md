@@ -46,19 +46,13 @@ sudo docker-compose up --build -d
 ```
 
 ### Run tests
-The raspberry IP needs to be passed in `REVERSE_PROXY_BASE_URL`
+In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
+Then go ahead and run:
 ```console 
-cd Shirka.Domotics.Tests 
-
-docker build -t tests . && \
-docker run --network host \
-            -e REVERSE_PROXY_BASE_URL=http://192.168.1.102 \
-            -e REVERSE_PROXY_NODE_PORT=8080 \
-            -e REVERSE_PROXY_GRAFANA_PORT=9090 \
-            -e DIRECT_NODERED_PORT=1880 \
-            -e DIRECT_GRAFANA_PORT=3000 tests
+sudo chmod +x run_tests.sh
+./run_tests.sh
 ```
 
 ### Access nodered and grafana
-- Open browser in host machine on `http://[RPi-IP]:8080`.
-- Open browser in host machine on `http://[RPi-IP]:9090`
+- Open browser in host machine on `http://[RPi_IP]:8080`.
+- Open browser in host machine on `http://[RPi_IP]:9090`

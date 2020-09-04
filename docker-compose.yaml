@@ -3,17 +3,17 @@ services:
   nginx-service:
     build: ./nginx 
     ports:
-      - '8080:8080' 
-      - '9090:9090' 
+      - "8080:8080" # to expose nodered port
+      - "9090:9090" # to expose grafana port
     depends_on:
       - grafana-service
       - nodered-service
   nodered-service:
     build: ./nodered
-    environment:
-      - TZ=Europe/Madrid
     ports:
       - "1880:1880"
+    environment:
+      - TZ=Europe/Madrid
     volumes:
       - type: bind
         source: ./data/nodered # physical location in host to keep persistent data. 
@@ -27,8 +27,8 @@ services:
     build: ./influxdb
     volumes:
       - type: bind
-        source: ./data/influxdb
-        target: /var/lib/influxdb
+        source: ./data/influxdb # physical location in host to keep persistent data. 
+        target: /var/lib/influxdb # where influxdb saves data to
     environment:
       - INFLUXDB_DB=db0
   grafana-service:
@@ -44,4 +44,3 @@ services:
     # environment:
     #   - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
     #   - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-

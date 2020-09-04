@@ -44,14 +44,7 @@ InfluxDb is listening over http on port 8086, but it's not exposed out of docker
 The project Shirka.Domotics.Test tests all the /health endpoints exposed by nodered and reports results.
 The tests are run in a docker container either in the VM or in the RPi. Needs to be run in host's network to be able to access services' endpoints.
 ```console 
-cd Shirka.Domotics.Tests && \
-docker build -t tests .  && \
-docker run --network host \
-            -e REVERSE_PROXY_BASE_URL=http://localhost \
-            -e REVERSE_PROXY_NODE_PORT=8080 \
-            -e REVERSE_PROXY_GRAFANA_PORT=9090 \
-            -e DIRECT_NODERED_PORT=1880 \
-            -e DIRECT_GRAFANA_PORT=3000 tests
+./run_tests.sh
 ```
 
 ### Test each health endpoint separately.
