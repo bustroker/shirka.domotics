@@ -1,9 +1,12 @@
 ## Setup environment 
 ssh inside the RPi.
 
-### Install git docker and docker-compose in RPi
+### Install git, node, npm, docker docker-compose in RPi
 ```console
 sudo apt install git
+
+sudo apt install -y nodejs npm
+
 sudo curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker pi
 
@@ -13,6 +16,8 @@ sudo apt-get remove python-configparser
 
 sudo pip3 -v install docker-compose
 ```
+
+### Install
 
 ## Run shirka.domotics in RPi
 ### Download shirka.domotics from github

@@ -2,6 +2,7 @@
 data
 *.log
 *.wav
+node_modules
 Shirka.Domotics.Tests/bin
 Shirka.Domotics.Tests/obj
 Shirka.Domotics.Tests/publish

@@ -33,5 +33,8 @@ sudo apt-get install -y dotnet-sdk-3.1
 dotnet --version
 echo "dotnet 3.1 installed"
 
+# install node and npm
+sudo apt install -y nodejs npm
+
 echo "done provisioning VM."
 
