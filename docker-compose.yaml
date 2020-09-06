@@ -8,6 +8,7 @@ services:
     depends_on:
       - grafana-service
       - nodered-service
+    # network_mode: "host"      
   nodered-service:
     build: ./nodered
     ports:
@@ -18,11 +19,14 @@ services:
       - type: bind
         source: ./data/nodered # physical location in host to keep persistent data. 
         target: /data # where nodered saves data to
+    # network_mode: "host"      
+
   mosquitto-service:
     build: ./mosquitto
     ports:
       - "1883:1883"
       - "9001:9001"
+    # network_mode: "host"      
   influxdb-service:
     build: ./influxdb
     volumes:
@@ -31,6 +35,7 @@ services:
         target: /var/lib/influxdb # where influxdb saves data to
     environment:
       - INFLUXDB_DB=db0
+    # network_mode: "host"      
   grafana-service:
     build: ./grafana
     ports:
@@ -41,6 +46,7 @@ services:
         target: /var/lib/grafana
     depends_on:
       - influxdb-service
+    # network_mode: "host"
     # environment:
     #   - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
     #   - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}

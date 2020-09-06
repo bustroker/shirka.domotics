@@ -1,6 +1,7 @@
 .vagrant
 data
 *.log
+*.wav
 Shirka.Domotics.Tests/bin
 Shirka.Domotics.Tests/obj
 Shirka.Domotics.Tests/publish
