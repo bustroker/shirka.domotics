@@ -17,8 +17,6 @@ sudo apt-get remove python-configparser
 sudo pip3 -v install docker-compose
 ```
 
-### Install
-
 ## Run shirka.domotics in RPi
 ### Download shirka.domotics from github
 First ssh inside rpi and `cd` into /home, create `shirka` folder, download `shirka.domotics` and provide permissions
@@ -59,5 +57,5 @@ sudo chmod +x run_tests.sh
 ```
 
 ### Access nodered and grafana
-- Open browser in host machine on `http://[RPi_IP]:8080`.
-- Open browser in host machine on `http://[RPi_IP]:9090`
+- Open browser in host machine on `http://[RPi_IP]:8080` to access nodered.
+- Open browser in host machine on `http://[RPi_IP]:9090` to access grafana

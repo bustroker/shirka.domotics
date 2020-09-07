@@ -68,7 +68,7 @@ nodered httpendpoint `/health/influxdb` endpoint responds 200 or 500 based on wh
 curl localhost:1880/health/influxdb
 ```
 
-### Run docker-compose on boot
+### Run docker-compose always boot
 Looks like systemd is the way to go.
 https://gist.github.com/Luzifer/7c54c8b0b61da450d10258f0abd3c917
 https://selfhostedhome.com/start-docker-compose-using-systemd-on-debian/
