@@ -19,18 +19,21 @@ ls
 **ALL THE FOLLOWING PORTS AND ENDPOINTS REFER TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
 
 ### Create `data` folders
-Create `data` folder with folders for each component to keep their persistent data and add initial setup data. This includes:
+Create `data` folder with subfolders for each component to keep their persistent data, and add initial setup data. This includes:
 - for nodered: default health flows.
-First make the file executable and then run.
+- for grafana: nothing yet
+
+First, make the file executable and then run.
 ```console
+cd install
 chmod +x initialize_data_folders.sh
 ./initialize_data_folders.sh
 ```
 
-### Run
+### Run manually
 Build and run all the components with docker-compose
 ```
-cd <root-folder>
+cd shirka.domotics
 docker-compose up --build
 ```
 
@@ -68,8 +71,40 @@ nodered httpendpoint `/health/influxdb` endpoint responds 200 or 500 based on wh
 curl localhost:1880/health/influxdb
 ```
 
-### Run docker-compose always boot
+### Run docker-compose always on boot
 Looks like systemd is the way to go.
 https://gist.github.com/Luzifer/7c54c8b0b61da450d10258f0abd3c917
 https://selfhostedhome.com/start-docker-compose-using-systemd-on-debian/
 https://techoverflow.net/2018/12/15/a-systemd-service-template-for-docker-compose/
+
+- Install the service
+```
+sudo ./install/install_service.vagrant.sh
+```
+
+- Now restart the VM 
+And make sure `shirka_domotics` wakes up automatically.
+```
+exit
+vagrant halt
+vagrant up
+vagrant ssh
+sudo systemctl status shirka_domotics.service
+```
+Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
+
+- Run tests
+```
+cd /vagrant
+./run_tests.sh
+```
+
+Expected output is:
+```
+.....
+Test Run Successful.
+Total tests: 6
+     Passed: 6
+......
+```
+
