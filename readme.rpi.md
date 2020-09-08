@@ -59,3 +59,38 @@ sudo chmod +x run_tests.sh
 ### Access nodered and grafana
 - Open browser in host machine on `http://[RPi_IP]:8080` to access nodered.
 - Open browser in host machine on `http://[RPi_IP]:9090` to access grafana
+
+
+
+### Run docker-compose always on boot
+- Install the service
+```
+sudo ./install/install_service.rpi.sh
+```
+
+- Now restart the RPi
+And make sure `shirka_domotics` wakes up automatically.
+```
+sudo reboot now
+````
+
+Then when back inside
+````
+sudo systemctl status shirka_domotics.service
+```
+Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
+
+- Run tests
+```
+cd /home/shirka/shirka.domotics
+./run_tests.sh
+```
+
+Expected output is:
+```
+.....
+Test Run Successful.
+Total tests: 6
+     Passed: 6
+......
+```

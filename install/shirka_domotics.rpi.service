@@ -1,0 +1,15 @@
+[Unit]
+Description=Shirka Domotics
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=pi
+ExecStart=/home/shirka/shirka.domotics/wakeup.vagrant.sh
+ExecStop=/home/shirka/shirka.domotics/wakedown.vagrant.sh
+
+[Install]
+WantedBy=multi-user.target
