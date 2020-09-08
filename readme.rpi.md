@@ -88,7 +88,7 @@ Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
 - Run tests
 ```
-cd /home/shirka/shirka.domotics
+cd /home/pi/shirka/shirka.domotics
 ./run_tests.sh
 ```
 
