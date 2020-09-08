@@ -8,8 +8,8 @@ Type=simple
 Restart=always
 RestartSec=10
 User=pi
-ExecStart=/home/shirka/shirka.domotics/wakeup.vagrant.sh
-ExecStop=/home/shirka/shirka.domotics/wakedown.vagrant.sh
+ExecStart=/home/shirka/shirka.domotics/wakeup.rpi.sh
+ExecStop=/home/shirka/shirka.domotics/wakedown.rpi.sh
 
 [Install]
 WantedBy=multi-user.target

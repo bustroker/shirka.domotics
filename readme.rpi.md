@@ -61,11 +61,16 @@ sudo chmod +x run_tests.sh
 - Open browser in host machine on `http://[RPi_IP]:9090` to access grafana
 
 
-
 ### Run docker-compose always on boot
 - Install the service
 ```
-sudo ./install/install_service.rpi.sh
+cd install
+sudo chmod +x ./install_service.rpi.sh
+sudo ./install_service.rpi.sh
+```
+check it
+```
+sudo systemctl status shirka_domotics.service
 ```
 
 - Now restart the RPi
