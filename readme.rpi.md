@@ -21,7 +21,7 @@ sudo pip3 -v install docker-compose
 ### Download shirka.domotics from github
 First ssh inside rpi and `cd` into /home, create `shirka` folder, download `shirka.domotics` and provide permissions
 ```console
-cd /home
+cd /home/pi
 sudo mkdir shirka
 cd shirka
 sudo git clone https://github.com/bustroker/shirka.domotics.git
@@ -39,7 +39,7 @@ sudo ./initialize_data_folders.sh
 
 ### Give permisions over all the folders and files
 ```
-sudo chmod -R 777 /home/shirka/shirka.domotics
+sudo chmod -R 777 /home/pi/shirka/shirka.domotics
 ```
 
 ### Run shirka.domotics
@@ -71,6 +71,7 @@ sudo ./install_service.rpi.sh
 check it
 ```
 sudo systemctl status shirka_domotics.service
+sudo journalctl 
 ```
 
 - Now restart the RPi
