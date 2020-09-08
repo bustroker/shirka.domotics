@@ -64,14 +64,14 @@ sudo chmod +x run_tests.sh
 ### Run docker-compose always on boot
 - Install the service
 ```
-cd install
+cd install 
 sudo chmod +x ./install_service.rpi.sh
 sudo ./install_service.rpi.sh
 ```
 check it
 ```
 sudo systemctl status shirka_domotics.service
-sudo journalctl 
+sudo journalctl -u shirka_domotics
 ```
 
 - Now restart the RPi
