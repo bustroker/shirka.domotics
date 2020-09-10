@@ -19,11 +19,11 @@ sudo pip3 -v install docker-compose
 
 ## Run shirka.domotics in RPi
 ### Download shirka.domotics from github
-First ssh inside rpi and `cd` into /home, create `shirka` folder, download `shirka.domotics` and provide permissions
+First ssh inside rpi and `cd` into `/home/pi`, create `shirka` folder, download `shirka.domotics` and provide permissions
 ```console
-cd /home/pi
-sudo mkdir shirka
-cd shirka
+cd /home/pi && \
+sudo mkdir shirka && \
+cd shirka && \
 sudo git clone https://github.com/bustroker/shirka.domotics.git
 ```
 
@@ -32,8 +32,8 @@ Create `data` folder with folders for each component to keep their persistent da
 - for nodered: default health flows.
 First make the file executable and then run.
 ```console
-cd shirka.domotics
-sudo chmod +x initialize_data_folders.sh
+cd shirka.domotics && \
+sudo chmod +x initialize_data_folders.sh && \
 sudo ./initialize_data_folders.sh
 ```
 
@@ -42,30 +42,12 @@ sudo ./initialize_data_folders.sh
 sudo chmod -R 777 /home/pi/shirka/shirka.domotics
 ```
 
-### Run shirka.domotics
-```console
-cd shirka.domotics
-sudo docker-compose up --build -d
-```
-
-### Run tests
-In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
-Then go ahead and run:
-```console 
-sudo chmod +x run_tests.sh
-./run_tests.sh
-```
-
-### Access nodered and grafana
-- Open browser in host machine on `http://[RPi_IP]:8080` to access nodered.
-- Open browser in host machine on `http://[RPi_IP]:9090` to access grafana
-
-
-### Run docker-compose always on boot
+### Install shirka_domotics as a systemd service
+It will start automatically when boot, and restart if broken any time.
 - Install the service
 ```
-cd install 
-sudo chmod +x ./install_service.rpi.sh
+cd install && \
+sudo chmod +x ./install_service.rpi.sh && \
 sudo ./install_service.rpi.sh
 ```
 check it
@@ -86,17 +68,25 @@ sudo systemctl status shirka_domotics.service
 ```
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
-- Run tests
-```
-cd /home/pi/shirka/shirka.domotics
+### Run tests
+In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
+Then go ahead and run:
+```console 
+sudo chmod +x run_tests.sh && \
 ./run_tests.sh
 ```
 
-Expected output is:
-```
-.....
-Test Run Successful.
-Total tests: 6
-     Passed: 6
-......
+### Access nodered and grafana
+Through nginx reverse proxy:
+- Open browser in host machine on `http://[RPi_IP]:8080` to access nodered.
+- Open browser in host machine on `http://[RPi_IP]:9090` to access grafana
+
+Direcly
+- Open browser in host machine on `http://[RPi_IP]:1880` to access nodered.
+- Open browser in host machine on `http://[RPi_IP]:3000` to access grafana
+
+### Run shirka.domotics manually
+```console
+cd shirka.domotics && \
+sudo docker-compose up --build -d
 ```

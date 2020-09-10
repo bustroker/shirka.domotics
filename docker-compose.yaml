@@ -20,7 +20,6 @@ services:
         source: ./data/nodered # physical location in host to keep persistent data. 
         target: /data # where nodered saves data to
     # network_mode: "host"      
-
   mosquitto-service:
     build: ./mosquitto
     ports:
