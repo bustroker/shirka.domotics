@@ -19,9 +19,10 @@ sudo pip3 -v install docker-compose
 
 ## Install shirka_domotics in RPi
 The next 4 steps are scripted in `full_install.sh`. I can be run or alternatively the 4 steps followed manually as described bellow.
-To run it, ssh into the RPi, and from any folder run
+To run it, ssh into the RPi, and from any folder run.
+**Make sure `/home/pi/shirka` folder does not exist.**
 ```
-sudo curl https://github.com/bustroker/shirka.domotics/blob/master/shirka_domotics_installer.sh | bash
+sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/shirka_domotics_installer.sh | bash
 ```
 
 ### 1. Download shirka.domotics from github
