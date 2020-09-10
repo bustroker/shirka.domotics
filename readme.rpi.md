@@ -17,8 +17,14 @@ sudo apt-get remove python-configparser
 sudo pip3 -v install docker-compose
 ```
 
-## Run shirka.domotics in RPi
-### Download shirka.domotics from github
+## Install shirka_domotics in RPi
+The next 4 steps are scripted in `full_install.sh`. I can be run or alternatively the 4 steps followed manually as described bellow.
+To run it, ssh into the RPi, and from any folder run
+```
+sudo curl https://github.com/bustroker/shirka.domotics/blob/master/shirka_domotics_installer.sh | bash
+```
+
+### 1. Download shirka.domotics from github
 First ssh inside rpi and `cd` into `/home/pi`, create `shirka` folder, download `shirka.domotics` and provide permissions
 ```console
 cd /home/pi && \
@@ -27,26 +33,26 @@ cd shirka && \
 sudo git clone https://github.com/bustroker/shirka.domotics.git
 ```
 
-### Create `data` folders
+### 2. Create `data` folders
 Create `data` folder with folders for each component to keep their persistent data and add initial setup data. This includes:
 - for nodered: default health flows.
 First make the file executable and then run.
 ```console
-cd shirka.domotics && \
+cd /home/pi/shirka/shirka.domotics && \
 sudo chmod +x initialize_data_folders.sh && \
-sudo ./initialize_data_folders.sh
+sudo ./initialize_data_folders.sh 
 ```
 
-### Give permisions over all the folders and files
+### 3. Give permisions over all the folders and files
 ```
 sudo chmod -R 777 /home/pi/shirka/shirka.domotics
 ```
 
-### Install shirka_domotics as a systemd service
+### 4. Install shirka_domotics as a systemd service
 It will start automatically when boot, and restart if broken any time.
 - Install the service
 ```
-cd install && \
+cd /home/pi/shirka/shirka.domotics/install/rpi && \
 sudo chmod +x ./install_service.rpi.sh && \
 sudo ./install_service.rpi.sh
 ```
@@ -68,7 +74,7 @@ sudo systemctl status shirka_domotics.service
 ```
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
-### Run tests
+## Run tests
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
 Then go ahead and run:
 ```console 
@@ -76,7 +82,7 @@ sudo chmod +x run_tests.sh && \
 ./run_tests.sh
 ```
 
-### Access nodered and grafana
+## Access nodered and grafana
 Through nginx reverse proxy:
 - Open browser in host machine on `http://[RPi_IP]:8080` to access nodered.
 - Open browser in host machine on `http://[RPi_IP]:9090` to access grafana
