@@ -36,7 +36,7 @@ If `shirka_domotics` has been already installed, first stop the service and disa
 ```
 sudo systemctl stop shirka_domotics.service && \
 sudo systemctl disable shirka_domotics.service && \
-sudo rm -r /home/pi/shirka/*
+sudo rm -rf /home/pi/shirka/*
 ```
 
 Then, install it from scratch
