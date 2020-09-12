@@ -1,6 +1,17 @@
 ## Setup environment 
 ssh inside the RPi.
 
+### Create `shirka` user
+```
+sudo rm /etc/ssh/ssh_host* 
+sudo ssh-keygen -A
+sudo adduser shirka
+sudo adduser shirka sudo
+sudo reboot
+
+sudo deluser --remove-home pi
+```
+
 ### Install git, node, npm, docker docker-compose in RPi
 ```console
 sudo apt install git
@@ -18,14 +29,14 @@ sudo pip3 -v install docker-compose
 ```
 
 ## Install shirka_domotics in RPi
-The next 4 steps are scripted in `shirka_domotics_installer.sh`. I can be run or alternatively the 4 steps followed manually as described bellow.
+The next 5 steps are scripted in `shirka_domotics_installer.sh`. I can be run or alternatively the 4 steps followed manually as described bellow.
 To run it, ssh into the RPi, and from any folder run.
 
 If `shirka_domotics` has been already installed, first stop the service and disable it, and remove `shirka` folder
 ```
 sudo systemctl stop shirka_domotics.service && \
 sudo systemctl disable shirka_domotics.service && \
-sudo rm -r /home/pi/shirka
+sudo rm -r /home/pi/shirka/*
 ```
 
 Then, install it from scratch
@@ -34,22 +45,22 @@ sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/shi
 ```
 
 ### 1. Download shirka.domotics from github
-First ssh inside rpi and `cd` into `/home/pi`, create `shirka` folder, download `shirka.domotics` and provide permissions
+First ssh inside rpi and `cd` into `/home/shirka`, download `shirka.domotics` and provide permissions
 ```console
-cd /home/pi && \
-sudo mkdir shirka && \
-cd shirka && \
+cd /home/shirka && \
 sudo git clone https://github.com/bustroker/shirka.domotics.git
 ```
 
 ### 2. Create `data` folders
 Create `data` folder with folders for each component to keep their persistent data and add initial setup data. This includes:
 - for nodered: default health flows.
+Also, creates a repo in nodered data folder.
+
 First make the file executable and then run.
 ```console
-cd /home/pi/shirka/shirka.domotics && \
-sudo chmod +x initialize_data_folders.sh && \
-sudo ./initialize_data_folders.sh 
+cd /home/shirka/shirka.domotics && \
+sudo chmod +x initialize_data_folders.rpi.sh && \
+sudo ./initialize_data_folders.rpi.sh 
 ```
 
 ### 3. Give permisions over all the folders and files
@@ -61,7 +72,7 @@ sudo chmod -R 777 /home/pi/shirka/shirka.domotics
 It will start automatically when boot, and restart if broken any time.
 - Install the service
 ```
-cd /home/pi/shirka/shirka.domotics/install/rpi && \
+cd /home/shirka/shirka.domotics/install/rpi && \
 sudo chmod +x ./install_service.rpi.sh && \
 sudo ./install_service.rpi.sh
 ```
@@ -82,12 +93,6 @@ Then when back inside
 sudo systemctl status shirka_domotics.service
 ```
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
-
-### create repo for nodered flows versioning
-```
-cd /home/pi/shirka/shirka.domotics.data/nodered
-git init
-```
 
 ## Run tests
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
