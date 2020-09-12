@@ -5,19 +5,6 @@ We want to have an automated development environment and an automated deployment
 ## Quick up and running in vagrant Virtual Machine 
 To run in Raspberry PI see readme.rpi.md
 
-### Download repo, run Vagrant VM and ssh inside VM
-```
-sudo git clone https://github.com/bustroker/shirka.domotics.git
-cd shirka.domotics
-vagrant up
-vagrant ssh
-cd ../../vagrant
-ls
-```
-`ls` should display all the content in shirka.domotics. 
-
-**ALL THE FOLLOWING PORTS AND ENDPOINTS REFER TO VAGRANT VM's, UNLESS SPECIFIED OTHERWISE**
-
 ### Create `data` folders
 Create `data` folder with subfolders for each component to keep their persistent data, and add initial setup data. This includes:
 - for nodered: default health flows.
@@ -25,7 +12,7 @@ Create `data` folder with subfolders for each component to keep their persistent
 
 First, make the file executable and then run.
 ```console
-cd install
+cd shirka.domotics
 chmod +x initialize_data_folders.sh
 ./initialize_data_folders.sh
 ```

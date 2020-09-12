@@ -1,6 +1,9 @@
 ## Work in progress
 This is just WIP. Can't run the voice fully from a container because no access to sound card from there. Need to figure out the cleanest way to do it.
 
+https://stackoverflow.com/questions/41083436/how-to-play-sound-in-a-docker-container
+https://blog.jessfraz.com/post/docker-containers-on-the-desktop/
+
 ### generate `wav` file manually in vagrant VM
 - build image
 ```

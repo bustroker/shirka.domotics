@@ -20,9 +20,17 @@ sudo pip3 -v install docker-compose
 ## Install shirka_domotics in RPi
 The next 4 steps are scripted in `shirka_domotics_installer.sh`. I can be run or alternatively the 4 steps followed manually as described bellow.
 To run it, ssh into the RPi, and from any folder run.
-**Make sure `/home/pi/shirka` folder does not exist.**
+
+If `shirka_domotics` has been already installed, first stop the service and disable it, and remove `shirka` folder
 ```
-sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/shirka_domotics_installer.sh | bash
+sudo systemctl stop shirka_domotics.service && \
+sudo systemctl disable shirka_domotics.service && \
+sudo rm -r /home/pi/shirka
+```
+
+Then, install it from scratch
+```
+sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/shirka_domotics_installer.rpi.sh | bash
 ```
 
 ### 1. Download shirka.domotics from github
@@ -74,6 +82,12 @@ Then when back inside
 sudo systemctl status shirka_domotics.service
 ```
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
+
+### create repo for nodered flows versioning
+```
+cd /home/pi/shirka/shirka.domotics.data/nodered
+git init
+```
 
 ## Run tests
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
