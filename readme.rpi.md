@@ -79,7 +79,7 @@ sudo ./install_service.rpi.sh
 check it
 ```
 sudo systemctl status shirka_domotics.service
-sudo journalctl -u shirka_domotics
+sudo journalctl -r -u shirka_domotics
 ```
 
 - Now restart the RPi
@@ -92,6 +92,7 @@ Then when back inside
 ````
 sudo systemctl status shirka_domotics.service
 ```
+
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
 ## Run tests
