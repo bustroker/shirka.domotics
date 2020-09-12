@@ -29,12 +29,12 @@ Reproduce wav from VM
 ### generate `wav` file manually in RPi
 - build image
 ```
-docker build -t voice .
+sudo docker build -t voice .
 ```
 
 - run and bash inside the container, mapping the folders where wav file is to be created, and attaching the host's sound device to the container.
 ```
-docker run -it -v /home/shirka/shirka.domotics/voice/tts:/home/app --device /dev/snd voice bash
+sudo docker run -it -v /home/shirka/shirka.domotics/voice/tts:/home/app --device /dev/snd voice bash
 ```
 
 - call tts
@@ -49,5 +49,5 @@ espeak -w tts.wav "Hello world"
 
 - exit the container and from the RPi, test the generated file
 ```
-omxplayer -o local tts.wav
+sudo omxplayer -o local tts.wav
 ```

@@ -106,8 +106,6 @@ npm install
 sudo reboot now
 ```
 
-
-
 ## Run tests
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
 Then go ahead and run:
@@ -125,6 +123,7 @@ Through nginx reverse proxy:
 Direcly
 - Open browser in host machine on `http://[RPi_IP]:1880` to access nodered.
 - Open browser in host machine on `http://[RPi_IP]:3000` to access grafana
+
 
 ### Run shirka.domotics manually
 ```console
