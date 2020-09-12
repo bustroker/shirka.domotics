@@ -95,6 +95,19 @@ sudo systemctl status shirka_domotics.service
 
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
+### Download nodered flows from existing repo
+And reboot
+```
+cd /home/shirka/shirka.domotics.data/nodered
+sudo rm -r *
+git remote add origin <REMOTE_GIT_REPO>
+git pull origin master
+npm install
+sudo reboot now
+```
+
+
+
 ## Run tests
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
 Then go ahead and run:
