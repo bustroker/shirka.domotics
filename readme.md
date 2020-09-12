@@ -15,13 +15,14 @@ First, make the file executable and then run.
 cd shirka.domotics
 chmod +x initialize_data_folders.sh
 ./initialize_data_folders.sh
+sudo chmod -R 777 /shirka.domotics.data
 ```
 
 ### Run manually
 Build and run all the components with docker-compose
 ```
 cd shirka.domotics
-docker-compose up --build
+docker-compose -f docker-compose.vagrant.yaml up -d
 ```
 
 Nodered is in `localhost:1880` and also throug nginx in `localhost:8080`. Open a browser in the host machine (outside VM) in `localhost:1880` to access nodered (the ports 8080 and 1880 from vagrant VM are mapped to ports 8080 and 1880 in host machine.).

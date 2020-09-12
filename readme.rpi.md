@@ -19,7 +19,7 @@ sudo apt install git
 sudo apt install -y nodejs npm
 
 sudo curl -sSL https://get.docker.com | sh
-sudo usermod -aG docker pi
+sudo usermod -aG docker shirka
 
 sudo apt-get install -y libffi-dev libssl-dev
 sudo apt-get install -y python3 python3-pip
@@ -36,7 +36,7 @@ If `shirka_domotics` has been already installed, first stop the service and disa
 ```
 sudo systemctl stop shirka_domotics.service && \
 sudo systemctl disable shirka_domotics.service && \
-sudo rm -rf /home/pi/shirka/*
+sudo rm -rf /home/shirka/*
 ```
 
 Then, install it from scratch
@@ -99,6 +99,7 @@ Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 In file `run_tests.sh` set variable `REVERSE_PROXY_BASE_URL` to 'http://[RPI_IP]', e.g, `REVERSE_PROXY_BASE_URL=http://192.168.1.200`.
 Then go ahead and run:
 ```console 
+cd /home/shirka/shirka.domotics && \
 sudo chmod +x run_tests.sh && \
 ./run_tests.sh
 ```
