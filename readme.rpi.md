@@ -1,7 +1,7 @@
 ## Setup environment 
 ssh inside the RPi.
 
-### Create `shirka` user
+### Create `shirka` user and delete `pi`
 ```
 sudo rm /etc/ssh/ssh_host* 
 sudo ssh-keygen -A
