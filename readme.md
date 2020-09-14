@@ -20,7 +20,7 @@ sudo chmod -R 777 /shirka.domotics.data
 
 ### Run manually
 Build and run all the components with docker-compose
-```
+```console
 cd shirka.domotics
 docker-compose -f docker-compose.vagrant.yaml up -d
 ```
@@ -55,7 +55,7 @@ curl localhost:1880/health/mosquitto
 
 - InfluxDB
 nodered httpendpoint `/health/influxdb` endpoint responds 200 or 500 based on whether it can access influxdb health endpoint
-```
+```console
 curl localhost:1880/health/influxdb
 ```
 
@@ -66,13 +66,13 @@ https://selfhostedhome.com/start-docker-compose-using-systemd-on-debian/
 https://techoverflow.net/2018/12/15/a-systemd-service-template-for-docker-compose/
 
 - Install the service
-```
+```console
 sudo ./install/install_service.vagrant.sh
 ```
 
 - Now restart the VM 
 And make sure `shirka_domotics` wakes up automatically.
-```
+```console
 exit
 vagrant halt
 vagrant up
@@ -82,13 +82,13 @@ sudo systemctl status shirka_domotics.service
 Make sure it's `active (running)` (in green). `Ctl+c` to go back to terminal
 
 - Run tests
-```
+```console
 cd /vagrant
 ./run_tests.sh
 ```
 
 Expected output is:
-```
+```console
 .....
 Test Run Successful.
 Total tests: 6
