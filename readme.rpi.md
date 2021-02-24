@@ -40,6 +40,11 @@ Then, remove the content of `shirka` folder **WITHOUT REMOVING `shirka.domotics.
 Only remove `shirka.domotics.data` to start from absolute scratch and LOSE all database data.
 `shirka` folder
 
+To remove shirka **WITH DATA**
+```
+sudo rm -r /home/pi/shirka
+```
+
 ### Install
 The next 4 steps are scripted in `shirka_domotics_installer.sh`. It can just be run, or alternatively the 4 steps can be followed manually as described bellow.
 To run it, ssh into the RPi, and from any folder run.
