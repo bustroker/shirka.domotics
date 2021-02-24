@@ -7,6 +7,8 @@ mkdir grafana
 mkdir influxdb 
 mkdir nodered
 cd ..
-cp vagrant/nodered/initial_data/* shirka.domotics.data/nodered
+cp shirka.domotics/nodered/initial_data/* shirka.domotics.data/nodered
 cd shirka.domotics.data/nodered
+git init
+cd ../grafana
 git init

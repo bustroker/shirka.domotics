@@ -4,7 +4,7 @@
 cd /home/shirka
 sudo git clone https://github.com/bustroker/shirka.domotics.git
 
-# create persistent data folders
+# create persistent data folders, ONLY THE FIRST TIME, OTHERWISE INFLUXDB BBDD AND GRAFANA BBDD WILL BE ERASED
 cd shirka.domotics 
 sudo chmod +x initialize_data_folders.rpi.sh 
 sudo ./initialize_data_folders.rpi.sh 

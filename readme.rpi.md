@@ -41,17 +41,29 @@ sudo rm -rf /home/shirka/*
 The next 4 steps are scripted in `shirka_domotics_installer.sh`. It can just be run, or alternatively the 4 steps can be followed manually as described bellow.
 To run it, ssh into the RPi, and from any folder run.
 
-If `shirka_domotics` has been already installed, first stop the service and disable it, and remove `shirka` folder
+#### Preparation
+If `shirka_domotics` has been already installed, first stop the service and disable it.
 ```
 sudo systemctl stop shirka_domotics.service && \
 sudo systemctl disable shirka_domotics.service && \
 sudo rm -r /home/pi/shirka
 ```
 
-Then, install it from scratch
+Then, remove the content of `shirka` folder **WITHOUT REMOVING `shirka.domotics.data` FOLDER**.
+Only remove `shirka.domotics.data` to start from absolute scratch and LOSE all database data.
+
+#### Installation
+Two options: install from absolute scratch, or keeping previous data.
+- Install it from absolute scratch.
 ```
-sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/shirka_domotics_installer.sh | bash
+sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/1.shirka_domotics_installer_from_scratch.rpi.sh | bash
 ```
+
+- Install keeping data.
+```
+sudo curl https://raw.githubusercontent.com/bustroker/shirka.domotics/master/2.shirka_domotics_installer_keep_data.rpi.sh | bash
+```
+
 
 ### 1. Download shirka.domotics from github
 First ssh inside rpi and `cd` into `/home/shirka`, download `shirka.domotics` and provide permissions
