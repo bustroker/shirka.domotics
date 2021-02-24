@@ -42,7 +42,7 @@ Only remove `shirka.domotics.data` to start from absolute scratch and LOSE all d
 
 To remove shirka **WITH DATA**
 ```
-sudo rm -r /home/pi/shirka
+sudo rm -r /home/shirka/*
 ```
 
 ### Install
