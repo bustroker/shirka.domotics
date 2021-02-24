@@ -30,11 +30,15 @@ sudo pip3 -v install docker-compose
 
 ## Install shirka_domotics in RPi
 ### 0. Uninstall `shirka_domotics` if a previous version exists
-If `shirka_domotics` has been already installed, first stop the service and disable it, and remove `shirka` folder
+If `shirka_domotics` has been already installed, first stop the service and disable it, 
+
+Then, remove the content of `shirka` folder **WITHOUT REMOVING `shirka.domotics.data` FOLDER**.
+Only remove `shirka.domotics.data` to start from absolute scratch and LOSE all database data.
+`shirka` folder
+
 ```console
 sudo systemctl stop shirka_domotics.service && \
-sudo systemctl disable shirka_domotics.service && \
-sudo rm -rf /home/shirka/*
+sudo systemctl disable shirka_domotics.service
 ```
 
 ### Install
@@ -48,9 +52,6 @@ sudo systemctl stop shirka_domotics.service && \
 sudo systemctl disable shirka_domotics.service && \
 sudo rm -r /home/pi/shirka
 ```
-
-Then, remove the content of `shirka` folder **WITHOUT REMOVING `shirka.domotics.data` FOLDER**.
-Only remove `shirka.domotics.data` to start from absolute scratch and LOSE all database data.
 
 #### Installation
 Two options: install from absolute scratch, or keeping previous data.
