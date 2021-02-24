@@ -17,7 +17,7 @@ services:
       - TZ=Europe/Madrid
     volumes:
       - type: bind
-        source: /home/shirka/shirka.domotics.data/nodered # physical location in host to keep persistent data. 
+        source: /shirka.domotics.data/nodered # physical location in host to keep persistent data. 
         target: /data # where nodered saves data to
     # network_mode: "host"      
   mosquitto-service:
@@ -30,7 +30,7 @@ services:
     build: ./influxdb
     volumes:
       - type: bind
-        source: /home/shirka/shirka.domotics.data/influxdb # physical location in host to keep persistent data. 
+        source: /shirka.domotics.data/influxdb # physical location in host to keep persistent data. 
         target: /var/lib/influxdb # where influxdb saves data to
     environment:
       - INFLUXDB_DB=db0
@@ -41,7 +41,7 @@ services:
       - '3000:3000'
     volumes:
       - type: bind
-        source: /home/shirka/shirka.domotics.data/grafana
+        source: /shirka.domotics.data/grafana
         target: /var/lib/grafana
     depends_on:
       - influxdb-service
