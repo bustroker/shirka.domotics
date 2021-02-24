@@ -1,0 +1,15 @@
+[Unit]
+Description=Shirka Domotics
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=pi
+ExecStart=/home/pi/shirka/shirka.domotics/wakeup.rpi.sh
+ExecStop=/home/pi/shirka/shirka.domotics/wakedown.rpi.sh
+
+[Install]
+WantedBy=multi-user.target

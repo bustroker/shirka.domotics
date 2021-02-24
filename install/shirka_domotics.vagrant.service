@@ -1,0 +1,15 @@
+[Unit]
+Description=Docker compose for shirka domotics
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=vagrant
+ExecStart=/vagrant/wakeup.vagrant.sh
+ExecStop=/vagrant/wakedown.vagrant.sh
+
+[Install]
+WantedBy=multi-user.target

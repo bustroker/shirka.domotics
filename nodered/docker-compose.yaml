@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Madrid
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - type: bind
+        source: ./data # location in host to keep persistent data. 
+        target: /data # where nodered saves data to

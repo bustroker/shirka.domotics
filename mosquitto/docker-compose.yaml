@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - type: bind
+        source: ./mosquitto/config # location in host to keep persistent data. 
+        target: /config # where mosquitto keeps config
+      - type: bind
+        source: ./mosquitto/data
+        target: /data 
+      - type: bind
+        source: ./mosquitto/log
+        target: /log 
